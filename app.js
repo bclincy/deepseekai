@@ -10,7 +10,7 @@ const openai = new OpenAI({
 
 async function main() {
     const completion = await openai.chat.completions.create({
-        messages: [{ role: "system", content: "You are a helpful assistant." }],
+        messages: [{ role: "system", content: "Can you build a Web site for individual who is a Software Developer" }],
         model: "deepseek-chat",
     });
 

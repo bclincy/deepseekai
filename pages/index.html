@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Muskegon Class of 1995 Reunion Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f8f9fa;
+        color: #333;
+      }
+      h1 {
+        text-align: center;
+        color: #990000;
+      }
+      .chart-container {
+        width: 80%;
+        margin: 20px auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      canvas {
+        margin: 20px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Muskegon Class of 1995 Reunion Dashboard</h1>
+
+    <div class="chart-container">
+      <h2>Participation Overview</h2>
+      <canvas id="participationChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+      <h2>Popular Family Activities</h2>
+      <canvas id="familyActivitiesChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+      <h2>Popular Adult Activities</h2>
+      <canvas id="adultActivitiesChart"></canvas>
+    </div>
+
+    <script>
+      // Mock data extracted from the uploaded file
+      const data = {
+        participation: {
+          registered: 75,
+          notRegistered: 25,
+        },
+        familyActivities: {
+          "Game Night": 30,
+          "Beach Day": 40,
+          Bowling: 50,
+          "Trivia Night": 35,
+          "Field Day": 20,
+        },
+        adultActivities: {
+          "Sunday Brunch": 60,
+          "Paint & Sip": 45,
+          Cruise: 50,
+          "Pub Crawl": 30,
+          "Beach Bonfire": 70,
+        },
+      };
+
+      // Participation Chart
+      new Chart(document.getElementById("participationChart"), {
+        type: "pie",
+        data: {
+          labels: ["Registered", "Not Registered"],
+          datasets: [
+            {
+              data: [
+                data.participation.registered,
+                data.participation.notRegistered,
+              ],
+              backgroundColor: ["#28a745", "#dc3545"],
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            legend: {
+              position: "top",
+            },
+          },
+        },
+      });
+
+      // Family Activities Chart
+      new Chart(document.getElementById("familyActivitiesChart"), {
+        type: "bar",
+        data: {
+          labels: Object.keys(data.familyActivities),
+          datasets: [
+            {
+              label: "Participants",
+              data: Object.values(data.familyActivities),
+              backgroundColor: "#007bff",
+            },
+          ],
+        },
+        options: {
+          scales: {
+            x: { title: { display: true, text: "Activities" } },
+            y: { title: { display: true, text: "Participants" } },
+          },
+        },
+      });
+
+      // Adult Activities Chart
+      new Chart(document.getElementById("adultActivitiesChart"), {
+        type: "bar",
+        data: {
+          labels: Object.keys(data.adultActivities),
+          datasets: [
+            {
+              label: "Participants",
+              data: Object.values(data.adultActivities),
+              backgroundColor: "#6f42c1",
+            },
+          ],
+        },
+        options: {
+          scales: {
+            x: { title: { display: true, text: "Activities" } },
+            y: { title: { display: true, text: "Participants" } },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
